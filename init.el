@@ -61,7 +61,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t :family "Consolas" :height 110))))
+  ;; height 110 width 110
+ '(default ((t :family "Consolas"))))
 ;(setq my-font "Consolas")
 ;; Ctrl-hをBackspaceに変更
 (global-set-key "\C-h" 'delete-backward-char)
@@ -147,8 +148,13 @@
 ;; File
 (setq auto-insert-alist
  (append '(
-           ("\\.c$" . ["template.c"])
-           ("\\.sh" . ["template.sh"])
-           ("\\.py" . ["template.py"])
+           ("\\.c$"  . ["template.c"])
+           ("\\.sh"  . ["template.sh"])
+           ("\\.py"  . ["template.py"])
+	   ("\\.nasm". ["template.nasm"])
           ) auto-insert-alist))
 (add-hook 'find-file-hooks 'auto-insert)
+
+;; Modeの設定
+(autoload 'nasm-mode "~/.emacs.d/mode/nasm-mode.el" "" t)
+(add-to-list 'auto-mode-alist '("\\.\\(asm\\|s\\|nasm\\)$" . nasm-mode))
