@@ -141,6 +141,14 @@
 ;; ac-python.elの設定
 (require 'ac-python)
 
+;; anythig.el
+(require 'cl)
+(defvar anything-version "1.3.9")
+
+;; anything-math-plugin.el
+(require 'anything)
+(require 'cl)
+
 ;; auto-insert
 (require 'autoinsert)
 ;; Template directory
@@ -155,6 +163,19 @@
           ) auto-insert-alist))
 (add-hook 'find-file-hooks 'auto-insert)
 
-;; Modeの設定
+;; Souce mode settings
+; NASM
 (autoload 'nasm-mode "~/.emacs.d/mode/nasm-mode.el" "" t)
 (add-to-list 'auto-mode-alist '("\\.\\(asm\\|s\\|nasm\\)$" . nasm-mode))
+; PHP
+(autoload 'php-mode "~/.emacs.d/mode/php-mode.el" "" t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-hook 'php-mode-hook
+         (lambda ()
+             (require 'php-completion)
+             (php-completion-mode t)
+             (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+             (when (require 'auto-complete nil t)
+             (make-variable-buffer-local 'ac-sources)
+             (add-to-list 'ac-sources 'ac-source-php-completion)
+             (auto-complete-mode t))))
