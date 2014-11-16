@@ -55,14 +55,18 @@
   (let (parens-require-spaces)
     (insert-pair)))
 
-;; 文字の書式とサイズ設定
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-  ;; height 110 width 110
- '(default ((t :family "Consolas"))))
+;; 英語フォントの設定
+(set-face-attribute 'default nil
+            :family "Consolas" ;; font
+            :height 120)    ;; font size
+
+;;文字コードの設定
+(prefer-coding-system 'utf-8)
+(setq quail-japanese-use-double-n t)
+;; emacs-mozcの設定
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
 ;(setq my-font "Consolas")
 ;; Ctrl-hをBackspaceに変更
 (global-set-key "\C-h" 'delete-backward-char)
@@ -102,8 +106,8 @@
 ;; 起動時のフレームサイズ
 (setq initial-frame-alist
       (append (list
-        '(width  . 80)
-        '(height . 30)
+        '(width  . 75)
+        '(height . 70)
         )
         initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
@@ -121,7 +125,7 @@
 (eval-after-load "color-theme"
  '(progn
 	 (color-theme-initialize)
-	 (color-theme-euphoria)))
+	 (color-theme-charcoal-black)))
 
 ;; 補完機能の設定
 (add-to-list 'load-path "~/.emacs.d/")
