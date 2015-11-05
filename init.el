@@ -2,7 +2,7 @@
 
 ;; auto-installによってインストールされるEmacs Lispをロードパスに加える
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
-;; (install-elisp-from-emcswiki "auto-install.el")
+;(install-elisp-from-emcswiki "auto-install.el")
 (require 'auto-install)
 ;; 起動時にEmacsWikiのページ名を補間候補に加える
 (auto-install-update-emacswiki-package-name t)
@@ -27,7 +27,7 @@
 (setq hippie-expand-try-functions-list
       '(try-complete-file-name-partially   ; ファイル名の一部
         try-complete-file-name             ; ファイル名全体
-        try-expand-all-abbrevs              ; 静的略語展開
+        try-expand-all-abbrevs             ; 静的略語展開
         try-expand-dabbrev                 ; 動的略語展開(カレントバッファ)
         try-expand-dabbrev-all-buffers     ; 動的略語展開(全バッファ)
         try-expand-dabbrev-from-kill       ; 動的略語展開(キルリング:M-w/C-wの履歴)
@@ -121,7 +121,7 @@
 (eval-after-load "color-theme"
  '(progn
 	 (color-theme-initialize)
-	 (color-theme-euphoria)))
+	 (color-theme-arjen)))
 
 ;; 補完機能の設定
 (add-to-list 'load-path "~/.emacs.d/")
